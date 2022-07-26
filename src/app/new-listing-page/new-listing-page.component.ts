@@ -7,9 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-listing-page.component.css']
 })
 export class NewListingPageComponent implements OnInit {
-  public name: string = '';
-  public description: string = '';
-  public price: string = '';
 
   constructor(
     private router: Router,
