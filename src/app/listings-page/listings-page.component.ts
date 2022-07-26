@@ -8,7 +8,7 @@ import { Listing } from '../types';
   styleUrls: ['./listings-page.component.css']
 })
 export class ListingsPageComponent implements OnInit {
-  listings: Listing[] = [];
+  public listings: Listing[] = [];
 
   constructor() { }
 

@@ -9,7 +9,12 @@ import { Listing } from '../types';
   styleUrls: ['./listing-detail-page.component.css']
 })
 export class ListingDetailPageComponent implements OnInit {
-  listing: Listing | undefined;
+  public listing: Listing = {
+    id: '',
+    name: '',
+    description: '',
+    price: 0
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -17,7 +22,7 @@ export class ListingDetailPageComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.listing = fakeListings.find(listing => listing.id === id);
+    this.listing = fakeListings.find(listing => listing.id === id) || this.listing;
   }
 
 }
