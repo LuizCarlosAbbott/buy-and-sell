@@ -15,7 +15,8 @@ export class ContactPageComponent implements OnInit {
     id: '',
     name: '',
     description: '',
-    price: 0
+    price: 0,
+    views: 0
   };
 
   constructor(
