@@ -32,4 +32,12 @@ export class ListingsService {
       httpOptions
     );
   }
+
+  getListingsForUser(): Observable<Listing[]> {
+    return this.http.get<Listing[]>(`/api/users/12345/listings`);
+  }
+
+  deleteListing(id: string): Observable<unknown> {
+    return this.http.delete<unknown>(`/api/listings/${id}`);
+  }
 }
