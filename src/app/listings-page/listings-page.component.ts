@@ -11,11 +11,11 @@ export class ListingsPageComponent implements OnInit {
   public listings: Listing[] = [];
 
   constructor(
-    private listingService: ListingsService
+    private listingsService: ListingsService
   ) { }
 
   ngOnInit(): void {
-    this.listingService.getListings()
+    this.listingsService.getListings()
       .subscribe(listings => this.listings = listings);
   }
 

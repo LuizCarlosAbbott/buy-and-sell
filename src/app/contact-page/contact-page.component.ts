@@ -22,12 +22,12 @@ export class ContactPageComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private listingService: ListingsService
+    private listingsService: ListingsService
   ) { }
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id') || '';
-    this.listingService.getListingById(id)
+    this.listingsService.getListingById(id)
       .subscribe(listing => {
         this.listing = listing;
         this.message = `Hi, I'm interested in your ${this.listing.name.toLocaleLowerCase()}!`;

@@ -27,7 +27,8 @@ export class ListingsService {
   }
 
   addViewToListing(id: string): Observable<Listing> {
-    return this.http.post<Listing>(`/api/listings/${id}/add-view`,
+    return this.http.post<Listing>(
+      `/api/listings/${id}/add-view`,
       {},
       httpOptions
     );
@@ -39,5 +40,13 @@ export class ListingsService {
 
   deleteListing(id: string): Observable<unknown> {
     return this.http.delete<unknown>(`/api/listings/${id}`);
+  }
+
+  createListing(name: string, description: string, price: number): Observable<Listing> {
+    return this.http.post<Listing>(
+      '/api/listings',
+      { name, description, price },
+      httpOptions
+    );
   }
 }

@@ -11,16 +11,16 @@ export class MyListingsPageComponent implements OnInit {
   listings: Listing[] = [];
 
   constructor(
-    private listingService: ListingsService
+    private listingsService: ListingsService
   ) { }
 
   ngOnInit(): void {
-    this.listingService.getListingsForUser()
+    this.listingsService.getListingsForUser()
       .subscribe(listings => this.listings = listings);
   }
 
   public onDeleteClicked(listingId: string): void {
-    this.listingService.deleteListing(listingId)
+    this.listingsService.deleteListing(listingId)
       .subscribe(() => {
         this.listings = this.listings.filter(listing => listing.id !== listingId)
       });

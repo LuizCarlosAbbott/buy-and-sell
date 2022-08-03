@@ -14,17 +14,17 @@ export class ListingDetailPageComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private listingService: ListingsService
+    private listingsService: ListingsService
   ) { }
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id') || '';
-    this.listingService.getListingById(id)
+    this.listingsService.getListingById(id)
       .subscribe(listing => {
         this.listing = listing;
         this.isLoading = false;
       });
-    this.listingService.addViewToListing(id)
+    this.listingsService.addViewToListing(id)
       .subscribe(() => console.log('Views updated!'));
   }
 
