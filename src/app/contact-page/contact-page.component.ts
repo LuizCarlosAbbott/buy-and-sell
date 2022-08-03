@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { fakeListings } from '../fake-data';
+import { ListingsService } from '../listings.service';
 import { Listing } from '../types';
 
 @Component({
@@ -21,13 +21,17 @@ export class ContactPageComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private listingService: ListingsService
   ) { }
 
   ngOnInit(): void {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.listing = fakeListings.find(listing => listing.id === id) || this.listing;
-    this.message = `Hi, I'm interested in your ${this.listing.name.toLocaleLowerCase()}!`;
+    const id = this.activatedRoute.snapshot.paramMap.get('id') || '';
+    this.listingService.getListingById(id)
+      .subscribe(listing => {
+        this.listing = listing;
+        this.message = `Hi, I'm interested in your ${this.listing.name.toLocaleLowerCase()}!`;
+      });
   }
 
   public sendMessage(): void {
