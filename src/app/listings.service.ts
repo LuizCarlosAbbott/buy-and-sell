@@ -18,15 +18,15 @@ export class ListingsService {
     private http: HttpClient
   ) { }
 
-  getListings(): Observable<Listing[]> {
+  public getListings(): Observable<Listing[]> {
     return this.http.get<Listing[]>('/api/listings');
   }
 
-  getListingById(id: string): Observable<Listing> {
+  public getListingById(id: string): Observable<Listing> {
     return this.http.get<Listing>(`/api/listings/${id}`);
   }
 
-  addViewToListing(id: string): Observable<Listing> {
+  public addViewToListing(id: string): Observable<Listing> {
     return this.http.post<Listing>(
       `/api/listings/${id}/add-view`,
       {},
@@ -34,19 +34,27 @@ export class ListingsService {
     );
   }
 
-  getListingsForUser(): Observable<Listing[]> {
+  public getListingsForUser(): Observable<Listing[]> {
     return this.http.get<Listing[]>(`/api/users/12345/listings`);
   }
 
-  deleteListing(id: string): Observable<unknown> {
+  public deleteListing(id: string): Observable<unknown> {
     return this.http.delete<unknown>(`/api/listings/${id}`);
   }
 
-  createListing(name: string, description: string, price: number): Observable<Listing> {
+  public createListing(name: string, description: string, price: number): Observable<Listing> {
     return this.http.post<Listing>(
       '/api/listings',
       { name, description, price },
       httpOptions
     );
+  }
+
+  public editListing(id: string, name: string, description: string, price: number): Observable<Listing> {
+    return this.http.post<Listing>(
+      `/api/listings/${id}`,
+      { name, description, price },
+      httpOptions
+    )
   }
 }
