@@ -15,7 +15,9 @@ export class AppComponent {
   ) {}
 
   public signInClicked(): void {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    this.auth.signInWithPopup(provider);
   }
 
   public signOutClicked(): void {
