@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'buy-and-sell';
+  public title = 'buy-and-sell';
+
+  constructor(
+    public auth: AngularFireAuth
+  ) {}
+
+  public signInClicked(): void {
+    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+
+  public signOutClicked(): void {
+    this.auth.signOut();
+  }
 }
